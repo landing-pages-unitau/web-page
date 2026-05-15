@@ -49,6 +49,14 @@ body {
 .logo h2 {
   color: #fff;
   font-size: 20px;
+  display: flex;
+  align-items: center;
+  gap: 8px;
+}
+
+.logo i {
+  color: #00c3ff; /* cor do ícone */
+  font-size: 18px;
 }
 
 /* LINKS */
