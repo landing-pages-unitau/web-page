@@ -121,12 +121,12 @@ body {
   align-items: center;
 }
 
-/* WRAPPER (2 colunas) */
+/* DUAS COLUNAS */
 .hero-wrapper {
   display: flex;
   align-items: center;
   justify-content: space-between;
-  gap: 40px;
+  gap: 60px;
 }
 
 /* TEXTO */
@@ -134,15 +134,53 @@ body {
   max-width: 500px;
 }
 
+.hero-text .tag {
+  display: inline-block;
+  padding: 8px 16px;
+  border: 1px solid #00c3ff;
+  border-radius: 20px;
+  font-size: 12px;
+  color: #00c3ff;
+  margin-bottom: 20px;
+}
+
+.hero-text h1 {
+  font-size: 48px;
+  line-height: 1.2;
+  color: #fff;
+}
+
+.hero-text h1 span {
+  color: #00c3ff;
+}
+
+.hero-text p {
+  margin-top: 20px;
+  color: #ccc;
+}
+
+/* BOTÃO */
+.btn {
+  display: inline-block;
+  margin-top: 25px;
+  padding: 14px 25px;
+  background: #00c3ff;
+  color: #07334c;
+  border-radius: 10px;
+  text-decoration: none;
+  font-weight: bold;
+}
+
 /* IMAGEM */
 .hero-image img {
-  width: 400px;
+  width: 320px; /* DIMINUIU AQUI */
   height: auto;
 
-  border-radius: 20px; /* arredondado */
-  
-  /* efeito moderno */
-  box-shadow: 0 20px 40px rgba(0,0,0,0.3);
+  border-radius: 30px;
+  border-top-left-radius: 80px;
+  border-bottom-right-radius: 80px;
+
+  box-shadow: 0 25px 60px rgba(0,0,0,0.4);
 }
 /* ================= MOBILE ================= */
 @media (max-width: 768px) {
