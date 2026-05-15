@@ -5,45 +5,47 @@
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>Dentista - Implantes e Estética</title>
 
-  <!-- CONEXÃO COM CSS -->
   <link rel="stylesheet" href="../assets/style.css">
   <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css">
 </head>
 
 <body>
-   <nav class="navbar">
-  <div class="nav-container container">
-    <div class="logo">
-  <h2>
-    <i class="fa-solid fa-tooth"></i>
-    Clínica
-  </h2>
-</div>
 
-    <ul class="nav-links">
+<nav class="navbar">
+  <div class="nav-container container">
+
+    <div class="logo">
+      <h2>
+        <i class="fa-solid fa-tooth"></i>
+        Clínica
+      </h2>
+    </div>
+
+    <ul class="nav-links" id="nav-links">
       <li><a href="#">Home</a></li>
       <li><a href="#">Sobre</a></li>
       <li><a href="#">Localização</a></li>
       <li><a href="#">Contato</a></li>
+
+   
     </ul>
 
-        <div class="social">
-    <a href="https://instagram.com" target="_blank">
-        <i class="fa-brands fa-instagram"></i>
-    </a>
-
-    <a href="https://facebook.com" target="_blank">
-        <i class="fa-brands fa-facebook-f"></i>
-    </a>
+    <div class="menu-toggle" id="menu-toggle">
+      <i class="fa-solid fa-bars"></i>
     </div>
 
+    <!-- REDES DESKTOP -->
+    <div class="social">
+      <a href="#"><i class="fa-brands fa-instagram"></i></a>
+      <a href="#"><i class="fa-brands fa-facebook-f"></i></a>
+    </div>
 
+  </div>
 </nav>
 
- <header class="hero">
+<header class="hero">
   <div class="container hero-wrapper">
 
-    <!-- TEXTO -->
     <div class="hero-text">
       <span class="tag">SUA SAÚDE, NOSSO COMPROMISSO</span>
 
@@ -57,10 +59,14 @@
         Tratamentos modernos com tecnologia de ponta e resultados naturais.
       </p>
 
-      <a href="#" class="btn">Agendar no WhatsApp</a>
+      <a href="#" class="btn">
+        <i class="fa-brands fa-whatsapp"></i>
+        Agendar no WhatsApp
+      </a>
+
+      <p class="subtext">Tratamento seguro e personalizado</p>
     </div>
 
-    <!-- IMAGEM -->
     <div class="hero-image">
       <img src="../img/sorrir.jpg" alt="Dentista">
     </div>
@@ -68,6 +74,7 @@
   </div>
 </header>
 
-  
+<script src="../js/script.js"></script>
+
 </body>
 </html>

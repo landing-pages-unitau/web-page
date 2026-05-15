@@ -1,36 +1,36 @@
-
+/* RESET */
 * {
   margin: 0;
   padding: 0;
   box-sizing: border-box;
 }
 
+/* BASE */
 body {
   font-family: Arial, sans-serif;
-  padding-top: 80px; /* espaço para navbar fixa */
+  padding-top: 40px;
   background-color: #07334c;
+  color: #fff;
 }
 
-/* CONTAINER PADRÃO */
+/* CONTAINER */
 .container {
   width: 90%;
   max-width: 1100px;
   margin: 0 auto;
 }
 
-/* NAVBAR FLUTUANTE */
+/* ================= NAVBAR ================= */
+
 .navbar {
-  position: fixed;
+  position: sticky;
   top: 20px;
   width: 100%;
   display: flex;
   justify-content: center;
   z-index: 1000;
-  background: transparent; /* remove fundo cheio */
-  border: none;
 }
 
-/* CAIXA CENTRAL */
 .nav-container {
   background: #031e2e;
   padding: 12px 25px;
@@ -42,42 +42,39 @@ body {
   justify-content: space-between;
   align-items: center;
 
-  box-shadow: 0 10px 30px rgba(4, 40, 91, 0.241);
+  box-shadow: 0 10px 30px rgba(4, 40, 91, 0.25);
+}
+
+/* LINHA DIVISÓRIA */
+.navbar::after {
+  content: "";
+  position: absolute;
+  bottom: -20px;
+  left: 0;
+  width: 100%;
+  height: 1px;
+  background: rgba(255,255,255,0.1);
 }
 
 /* LOGO */
 .logo h2 {
-  color: #fff;
-  font-size: 20px;
   display: flex;
   align-items: center;
   gap: 8px;
+  font-size: 20px;
 }
 
 .logo i {
-  color: #00c3ff; /* cor do ícone */
-  font-size: 18px;
+  color: #00c3ff;
 }
 
 /* LINKS */
 .nav-links {
   list-style: none;
   display: flex;
-  align-items: center;
   gap: 25px;
 }
 
-.navbar::after {
-  content: "";
-  position: absolute;
-  bottom: -20px;
-  left: 0;
-
-  width: 100%;
-  height: 2px;
-
-  background: rgba(56, 102, 137, 0.616);
-}
 .nav-links a {
   text-decoration: none;
   color: #fff;
@@ -89,24 +86,32 @@ body {
   color: #00c3ff;
 }
 
-/* REDES SOCIAIS */
+/* REDES */
 .social {
   display: flex;
   gap: 10px;
 }
 
 .social a {
-  text-decoration: none;
-  font-size: 14px;
+  width: 35px;
+  height: 35px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+
+  background: rgba(255,255,255,0.1);
+  border-radius: 50%;
   color: #fff;
   transition: 0.3s;
+  text-decoration: none;
 }
 
 .social a:hover {
-  color: #00c3ff;
+  background: #00c3ff;
+  color: #07334c;
 }
 
-/* MENU MOBILE */
+/* HAMBURGUER */
 .menu-toggle {
   display: none;
   font-size: 26px;
@@ -114,14 +119,15 @@ body {
   color: #fff;
 }
 
-/* HERO */
+/* ================= HERO ================= */
+
 .hero {
   min-height: 100vh;
   display: flex;
   align-items: center;
 }
 
-/* DUAS COLUNAS */
+/* LAYOUT */
 .hero-wrapper {
   display: flex;
   align-items: center;
@@ -131,49 +137,77 @@ body {
 
 /* TEXTO */
 .hero-text {
-  max-width: 500px;
+  max-width: 550px;
 }
 
 .hero-text .tag {
   display: inline-block;
-  padding: 8px 16px;
+  padding: 10px 18px;
   border: 1px solid #00c3ff;
   border-radius: 20px;
-  font-size: 12px;
+  font-size: 13px;
   color: #00c3ff;
   margin-bottom: 20px;
 }
 
+/* TÍTULO */
 .hero-text h1 {
-  font-size: 48px;
-  line-height: 1.2;
-  color: #fff;
+  font-size: 58px;
+  line-height: 1.1;
+  font-weight: 700;
 }
 
 .hero-text h1 span {
   color: #00c3ff;
 }
 
+/* TEXTO */
 .hero-text p {
   margin-top: 20px;
-  color: #ccc;
+  font-size: 18px;
+  color: #e1e1e1;
+  max-width: 320px;
+  line-height: 1.5;
 }
 
 /* BOTÃO */
 .btn {
-  display: inline-block;
-  margin-top: 25px;
-  padding: 14px 25px;
+  display: inline-flex;
+  align-items: center;
+  gap: 10px;
+
+  margin-top: 30px;
+  padding: 16px 28px;
+
   background: #00c3ff;
-  color: #07334c;
-  border-radius: 10px;
+  color: #0d294f;
+
+  border-radius: 12px;
   text-decoration: none;
   font-weight: bold;
+  font-size: 16px;
+
+  transition: 0.3s;
+}
+
+.btn:hover {
+  background: #00a8dd;
+}
+
+.btn i {
+  font-size: 18px;
 }
 
 /* IMAGEM */
+.hero-image {
+  flex: 1;
+  display: flex;
+  justify-content: center;
+}
+
 .hero-image img {
-  width: 320px; /* DIMINUIU AQUI */
+  width: 100%;
+  max-width: 420px;
   height: auto;
 
   border-radius: 30px;
@@ -182,12 +216,62 @@ body {
 
   box-shadow: 0 25px 60px rgba(0,0,0,0.4);
 }
+
+/* ================= TABLET ================= */
+
+@media (max-width: 1024px) {
+
+  .hero-wrapper {
+    gap: 40px;
+  }
+
+  .hero-text h1 {
+    font-size: 46px;
+  }
+
+  .hero-image img {
+    max-width: 320px;
+  }
+}
+
 /* ================= MOBILE ================= */
+
 @media (max-width: 768px) {
 
+  .hero {
+    padding-top: 40px;
+  }
+
+  .hero-wrapper {
+    flex-direction: column;
+    text-align: center;
+    gap: 30px;
+  }
+
+  .hero-text {
+    max-width: 100%;
+  }
+
+  .hero-text h1 {
+    font-size: 36px;
+  }
+
+  .hero-text p {
+    max-width: 100%;
+    font-size: 16px;
+  }
+
+  .hero-image img {
+    max-width: 260px;
+  }
+
+  /* NAV */
   .nav-container {
-    position: relative;
     border-radius: 20px;
+  }
+
+  .menu-toggle {
+    display: block;
   }
 
   .nav-links {
@@ -197,31 +281,38 @@ body {
     width: 220px;
     background: #07334c;
     flex-direction: column;
-    align-items: flex-start;
     padding: 20px;
     border-radius: 15px;
     display: none;
   }
 
   .nav-links li {
-    width: 100%;
     margin-bottom: 10px;
-  }
-
-  .nav-links a {
-    display: block;
-    width: 100%;
   }
 
   .nav-links.active {
     display: flex;
   }
 
-  .menu-toggle {
-    display: block;
-  }
-
   .social {
     display: none;
+  }
+}
+
+/* ================= MOBILE PEQUENO ================= */
+
+@media (max-width: 480px) {
+
+  .hero-text h1 {
+    font-size: 30px;
+  }
+
+  .btn {
+    padding: 14px 20px;
+    font-size: 14px;
+  }
+
+  .hero-image img {
+    max-width: 220px;
   }
 }
