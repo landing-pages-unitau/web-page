@@ -3,93 +3,321 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Dentista - Implantes e Estética</title>
+  <title>Clínica Odontológica — Implantes e Estética</title>
 
-  <link rel="stylesheet" href="../assets/style.css">
+  <!-- FONTES -->
+  <link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+
+  <!-- ÍCONES -->
   <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css">
-</head>
 
+  <!-- CSS -->
+  <link rel="stylesheet" href="../assets/style.css">
+</head>
 <body>
 
+<!-- ===== NAVBAR ===== -->
 <nav class="navbar">
   <div class="nav-container container">
 
-    <!-- LOGO -->
     <div class="logo">
-      <h2>
-        <i class="fa-solid fa-tooth"></i>
-        Clínica
-      </h2>
+      <i class="fa-solid fa-tooth"></i>
+      Clínica
     </div>
 
-    <!-- MENU -->
     <ul class="nav-links" id="nav-links">
-      <li><a href="#">Home</a></li>
-      <li><a href="#">Sobre</a></li>
-      <li><a href="#">Localização</a></li>
-      <li><a href="#">Contato</a></li>
-
-      <!-- REDES SOCIAIS (MOBILE) -->
+      <li><a href="#home">Home</a></li>
+      <li><a href="#diferenciais">Sobre</a></li>
+      <li><a href="#tratamentos">Tratamentos</a></li>
+      <li><a href="#depoimentos">Depoimentos</a></li>
+      <li><a href="#contato">Contato</a></li>
       <li class="social-mobile">
-        <a href="https://instagram.com" target="_blank">
-          <i class="fa-brands fa-instagram"></i>
-        </a>
-
-        <a href="https://facebook.com" target="_blank">
-          <i class="fa-brands fa-facebook-f"></i>
-        </a>
+        <a href="https://instagram.com" target="_blank"><i class="fa-brands fa-instagram"></i></a>
+        <a href="https://facebook.com" target="_blank"><i class="fa-brands fa-facebook-f"></i></a>
       </li>
     </ul>
 
-    <!-- HAMBURGUER -->
     <div class="menu-toggle" id="menu-toggle">
       <i class="fa-solid fa-bars"></i>
     </div>
 
-    <!-- REDES DESKTOP -->
     <div class="social">
-      <a href="https://instagram.com" target="_blank">
-        <i class="fa-brands fa-instagram"></i>
-      </a>
-
-      <a href="https://facebook.com" target="_blank">
-        <i class="fa-brands fa-facebook-f"></i>
-      </a>
+      <a href="https://instagram.com" target="_blank"><i class="fa-brands fa-instagram"></i></a>
+      <a href="https://facebook.com" target="_blank"><i class="fa-brands fa-facebook-f"></i></a>
     </div>
 
   </div>
 </nav>
 
-<header class="hero">
+<!-- ===== HERO ===== -->
+<header class="hero" id="home">
   <div class="container hero-wrapper">
 
     <div class="hero-text">
-      <span class="tag">SUA SAÚDE, NOSSO COMPROMISSO</span>
+      <div class="badge-pill">
+        +500 Pacientes Satisfeitos
+      </div>
 
       <h1>
-        Sorria com <br>
-        confiança <br>
+        Sorria com<br>
+        confiança<br>
         <span>novamente</span>
       </h1>
 
-      <p>
-        Tratamentos modernos com tecnologia de ponta e resultados naturais.
-      </p>
+      <p>Tratamentos modernos com tecnologia de ponta e resultados naturais.</p>
 
-      <a href="#" class="btn">
-        <i class="fa-brands fa-whatsapp"></i>
-        Agendar no WhatsApp
-      </a>
+      <div class="hero-features">
+        <div class="hero-feat"><i class="fa-solid fa-microchip"></i> Tecnologia avançada</div>
+        <div class="hero-feat"><i class="fa-solid fa-heart"></i> Atendimento humanizado</div>
+        <div class="hero-feat"><i class="fa-solid fa-leaf"></i> Resultados naturais</div>
+      </div>
 
+      <div class="hero-ctas">
+        <a href="#" class="btn-primary">
+          <i class="fa-brands fa-whatsapp"></i>
+          Agendar avaliação gratuita
+        </a>
+        <a href="#contato" class="btn-secondary">
+          <i class="fa-regular fa-circle-dot"></i>
+          Atendimento via WhatsApp
+        </a>
+      </div>
     </div>
 
     <div class="hero-image">
-      <img src="../img/sorrir.jpg" alt="Dentista">
+      <div class="hero-img-wrap">
+        <img src="../img/sorrir.jpg" alt="Especialista em sorrisos">
+        <div class="float-card">
+          <div class="float-card-icon"><i class="fa-solid fa-user-doctor"></i></div>
+          <div class="float-card-text">
+            <strong>Especialistas em transformar sorrisos</strong>
+            <span>com segurança e cuidado.</span>
+          </div>
+        </div>
+      </div>
     </div>
 
   </div>
 </header>
 
+<!-- ===== STATS BAR ===== -->
+<div class="stats-bar">
+  <div class="container">
+    <div class="stats-inner">
+
+      <div class="stat-item">
+        <div class="stat-value"><i class="fa-solid fa-star"></i> 4.9</div>
+        <div class="stat-stars">
+          <i class="fa-solid fa-star"></i>
+          <i class="fa-solid fa-star"></i>
+          <i class="fa-solid fa-star"></i>
+          <i class="fa-solid fa-star"></i>
+          <i class="fa-solid fa-star"></i>
+        </div>
+        <div class="stat-label">Avaliação no Google</div>
+      </div>
+
+      <div class="stat-divider"></div>
+
+      <div class="stat-item">
+        <div class="stat-value">+500</div>
+        <div class="stat-label">Pacientes atendidos</div>
+      </div>
+
+      <div class="stat-divider"></div>
+
+      <div class="stat-item">
+        <div class="stat-value">10 Anos</div>
+        <div class="stat-label">De experiência</div>
+      </div>
+
+      <div class="stat-divider"></div>
+
+      <div class="stat-item">
+        <div class="stat-value">
+          <i class="fa-regular fa-face-smile" style="color:var(--cyan); font-size:26px;"></i>
+        </div>
+        <div class="stat-label">Sorrisos transformados</div>
+      </div>
+
+    </div>
+  </div>
+</div>
+
+<!-- ===== TRATAMENTOS ===== -->
+<section class="tratamentos" id="tratamentos">
+  <div class="container">
+
+    <div class="section-header-row section-header">
+      <div>
+        <div class="section-tag">Nossos Tratamentos</div>
+        <h2>Soluções completas<br>para o seu sorriso</h2>
+      </div>
+      <a href="#contato" class="btn-outline">
+        Ver todos os tratamentos <i class="fa-solid fa-arrow-right"></i>
+      </a>
+    </div>
+
+    <div class="trat-grid">
+
+      <div class="trat-card">
+        <div class="trat-icon"><i class="fa-solid fa-tooth"></i></div>
+        <h3>Implantes Dentários</h3>
+        <p>Recupere a função mastigatória e a estética do seu sorriso com segurança.</p>
+      </div>
+
+      <div class="trat-card">
+        <div class="trat-icon"><i class="fa-solid fa-wand-magic-sparkles"></i></div>
+        <h3>Clareamento Dental</h3>
+        <p>Dentes mais brancos e sorriso renovado com resultados rápidos.</p>
+      </div>
+
+      <div class="trat-card">
+        <div class="trat-icon"><i class="fa-solid fa-teeth"></i></div>
+        <h3>Lentes de Contato Dental</h3>
+        <p>Transforme o formato e a cor dos dentes com um resultado natural e duradouro.</p>
+      </div>
+
+      <div class="trat-card">
+        <div class="trat-icon"><i class="fa-solid fa-face-smile"></i></div>
+        <h3>Harmonização Facial</h3>
+        <p>Realce sua beleza natural com procedimentos seguros e personalizados.</p>
+      </div>
+
+    </div>
+  </div>
+</section>
+
+<!-- ===== DIFERENCIAIS ===== -->
+<section class="diferenciais" id="diferenciais">
+  <div class="container">
+
+    <div class="section-header" style="text-align:center;">
+      <div class="section-tag">Por que nos escolher</div>
+      <h2>Por que escolher nossa clínica?</h2>
+    </div>
+
+    <div class="dif-grid">
+
+      <div class="dif-card">
+        <div class="dif-icon"><i class="fa-solid fa-microchip"></i></div>
+        <h3>Tecnologia avançada</h3>
+        <p>Equipamentos modernos para tratamentos mais rápidos, precisos e seguros, com o menor desconforto possível.</p>
+      </div>
+
+      <div class="dif-card">
+        <div class="dif-icon"><i class="fa-solid fa-user-doctor"></i></div>
+        <h3>Profissionais qualificados</h3>
+        <p>Equipe especializada com ampla experiência em estética dental, implantes e harmonização facial.</p>
+      </div>
+
+      <div class="dif-card">
+        <div class="dif-icon"><i class="fa-solid fa-leaf"></i></div>
+        <h3>Resultados naturais</h3>
+        <p>Sorrisos harmônicos e equilibrados que respeitam a sua identidade e valorizam sua beleza natural.</p>
+      </div>
+
+    </div>
+  </div>
+</section>
+
+<!-- ===== DEPOIMENTOS ===== -->
+<section class="depoimentos" id="depoimentos">
+  <div class="container">
+
+    <div class="section-header">
+      <div class="section-tag">Depoimentos</div>
+      <h2>O que nossos pacientes dizem</h2>
+    </div>
+
+    <div class="dep-grid">
+
+      <div class="dep-card">
+        <div class="dep-header">
+          <div class="dep-quote">
+            <div class="dep-quote-icon">"</div>
+            <div class="dep-tag">Implante Dentário</div>
+          </div>
+        </div>
+        <p class="dep-body">Excelente profissional! Fiz meu implante e o resultado foi incrível. Atendimento impecável do início ao fim.</p>
+        <div class="dep-stars">
+          <i class="fa-solid fa-star"></i><i class="fa-solid fa-star"></i>
+          <i class="fa-solid fa-star"></i><i class="fa-solid fa-star"></i>
+          <i class="fa-solid fa-star"></i>
+        </div>
+        <div class="dep-author">
+          <div class="dep-avatar"><i class="fa-solid fa-user"></i></div>
+          <span class="dep-name">Maria Silva</span>
+        </div>
+      </div>
+
+      <div class="dep-card">
+        <div class="dep-header">
+          <div class="dep-quote">
+            <div class="dep-quote-icon">"</div>
+            <div class="dep-tag">Clareamento Dental</div>
+          </div>
+        </div>
+        <p class="dep-body">Clareamento dental com resultado surpreendente! Equipe super atenciosa e ambiente acolhedor.</p>
+        <div class="dep-stars">
+          <i class="fa-solid fa-star"></i><i class="fa-solid fa-star"></i>
+          <i class="fa-solid fa-star"></i><i class="fa-solid fa-star"></i>
+          <i class="fa-solid fa-star"></i>
+        </div>
+        <div class="dep-author">
+          <div class="dep-avatar"><i class="fa-solid fa-user"></i></div>
+          <span class="dep-name">João Pereira</span>
+        </div>
+      </div>
+
+      <div class="dep-card">
+        <div class="dep-header">
+          <div class="dep-quote">
+            <div class="dep-quote-icon">"</div>
+            <div class="dep-tag">Lentes de Contato</div>
+          </div>
+        </div>
+        <p class="dep-body">As lentes de contato mudaram meu sorriso e minha autoestima. Muito feliz com o resultado!</p>
+        <div class="dep-stars">
+          <i class="fa-solid fa-star"></i><i class="fa-solid fa-star"></i>
+          <i class="fa-solid fa-star"></i><i class="fa-solid fa-star"></i>
+          <i class="fa-solid fa-star"></i>
+        </div>
+        <div class="dep-author">
+          <div class="dep-avatar"><i class="fa-solid fa-user"></i></div>
+          <span class="dep-name">Ana Carolina</span>
+        </div>
+      </div>
+
+    </div>
+
+    <div class="dep-dots">
+      <div class="dep-dot active"></div>
+      <div class="dep-dot"></div>
+    </div>
+
+  </div>
+</section>
+
+<!-- ===== CONTATO ===== -->
+<section class="contato" id="contato">
+  <div class="container">
+    <div class="section-tag">Fale Conosco</div>
+    <h2>Agende sua consulta</h2>
+    <p>Entre em contato pelo WhatsApp, tire suas dúvidas e agende sua avaliação gratuita.</p>
+    <a href="#" class="btn-primary" style="margin:0 auto; justify-content:center; max-width:260px;">
+      <i class="fa-brands fa-whatsapp"></i>
+      Falar no WhatsApp
+    </a>
+  </div>
+</section>
+
+<!-- ===== FOOTER ===== -->
+<footer>
+  © 2026 Clínica Odontológica — Todos os direitos reservados
+</footer>
+
+<!-- JS -->
 <script src="../js/script.js"></script>
 
 </body>

@@ -1,15 +1,5 @@
 const toggle = document.getElementById('menu-toggle');
-const nav = document.getElementById('nav-links');
+const links = document.getElementById('nav-links');
 
-toggle.addEventListener('click', () => {
-  nav.classList.toggle('active');
-});
-
-/* FECHAR MENU AO CLICAR */
-const links = document.querySelectorAll('.nav-links a');
-
-links.forEach(link => {
-  link.addEventListener('click', () => {
-    nav.classList.remove('active');
-  });
-});
+toggle.addEventListener('click', () => links.classList.toggle('active'));
+links.querySelectorAll('a').forEach(a => a.addEventListener('click', () => links.classList.remove('active')));

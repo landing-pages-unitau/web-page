@@ -1,16 +1,13 @@
 "use strict";
 
 var toggle = document.getElementById('menu-toggle');
-var nav = document.getElementById('nav-links');
+var links = document.getElementById('nav-links');
 toggle.addEventListener('click', function () {
-  nav.classList.toggle('active');
+  return links.classList.toggle('active');
 });
-/* FECHAR MENU AO CLICAR */
-
-var links = document.querySelectorAll('.nav-links a');
-links.forEach(function (link) {
-  link.addEventListener('click', function () {
-    nav.classList.remove('active');
+links.querySelectorAll('a').forEach(function (a) {
+  return a.addEventListener('click', function () {
+    return links.classList.remove('active');
   });
 });
 //# sourceMappingURL=script.dev.js.map
