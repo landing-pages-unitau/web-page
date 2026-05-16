@@ -1,372 +1,977 @@
-/* ===== RESET & BASE ===== */
+/* ================================================================
+   ESTILOS GLOBAIS — CLÍNICA / LANDING PAGE
+   Autor: João Pedro Rocha Gomes
+   Última atualização: 16/05/2026
+   Estrutura:
+     1. Reset & Base
+     2. Variáveis CSS
+     3. Navbar
+     4. Hero
+     5. Barra de Estatísticas
+     6. Seção Genérica (cabeçalho e botões reutilizáveis)
+     7. Tratamentos
+     8. Diferenciais
+     9. Depoimentos
+    10. Contato
+    11. Rodapé
+    12. Responsivo — Tablet (max 1024px)
+    13. Responsivo — Mobile (max 768px)
+    14. Responsivo — Mobile Pequeno (max 480px)
+   ================================================================ */
+
+
+/* ================================================================
+   1. RESET & BASE
+   Zera margens e paddings padrão do navegador e define
+   comportamentos fundamentais de todos os elementos.
+   ================================================================ */
+
 *, *::before, *::after {
-  margin: 0; padding: 0; box-sizing: border-box;
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box; /* Garante que padding e border não aumentem o tamanho total do elemento */
 }
-:root {
-  --cyan: #00c3ff;
-  --cyan-dark: #0099cc;
-  --bg-deep: #04111a;
-  --bg-mid: #062030;
-  --bg-card: #071e2e;
-  --bg-card2: #0a2535;
-  --text: #ffffff;
-  --text-muted: #8faabb;
-  --border: rgba(0,195,255,0.15);
+
+html {
+  scroll-behavior: smooth; /* Rolagem suave ao clicar em âncoras (#seção) */
 }
-html { scroll-behavior: smooth; }
+
 body {
   font-family: 'Plus Jakarta Sans', sans-serif;
   background: #062030;
-  color: var(--text);
-  overflow-x: hidden;
+  color: var(--texto);
+  overflow-x: hidden; /* Evita barra de rolagem horizontal indesejada */
 }
-img { max-width: 100%; height: auto; display: block; }
-a { text-decoration: none; color: inherit; }
-.container { width: 90%; max-width: 1120px; margin: 0 auto; }
 
-/* ===== NAVBAR ===== */
+img {
+  max-width: 100%;
+  height: auto;
+  display: block; /* Remove espaço fantasma abaixo das imagens */
+}
+
+a {
+  text-decoration: none;
+  color: inherit; /* Links herdam a cor do elemento pai */
+}
+
+/* Wrapper central — limita largura e centraliza o conteúdo */
+.container {
+  width: 90%;
+  max-width: 1120px;
+  margin: 0 auto;
+}
+
+
+/* ================================================================
+   2. VARIÁVEIS CSS (Design Tokens)
+   Cores e valores reutilizáveis em todo o projeto.
+   Altere aqui para refletir em todos os componentes.
+   ================================================================ */
+
+:root {
+  /* --- Cores de destaque --- */
+  --ciano: #00c3ff;        /* Cor principal de destaque (botões, ícones, bordas ativas) */
+  --ciano-escuro: #0099cc; /* Versão mais escura usada em hover */
+
+  /* --- Fundos --- */
+  --fundo-profundo: #04111a; /* Fundo mais escuro (seções de contraste máximo) */
+  --fundo-medio: #062030;    /* Fundo padrão do body */
+  --fundo-card: #071e2e;     /* Fundo dos cards principais */
+  --fundo-card2: #0a2535;    /* Fundo alternativo de cards (diferenciais) */
+
+  /* --- Tipografia --- */
+  --texto: #ffffff;          /* Cor principal dos textos */
+  --texto-suave: #8faabb;    /* Textos secundários e descrições */
+
+  /* --- Bordas --- */
+  --borda: rgba(0, 195, 255, 0.15); /* Borda sutil com tom ciano translúcido */
+}
+
+
+/* ================================================================
+   3. NAVBAR
+   Barra de navegação fixa no topo com efeito de vidro (glassmorphism).
+   A navbar fica centralizada e flutua sobre o conteúdo.
+   ================================================================ */
+
 .navbar {
-  position: sticky; top: 0;
-  display: flex; justify-content: center;
-  z-index: 1000;
+  position: sticky; /* Gruda no topo ao rolar a página */
+  top: 0;
+  display: flex;
+  justify-content: center;
+  z-index: 1000; /* Fica acima de todos os outros elementos */
   padding: 16px 16px 0;
   background: transparent;
 }
+
+/* Cápsula interna com efeito de vidro fosco */
 .nav-container {
   background: rgba(6, 28, 43, 0.92);
-  backdrop-filter: blur(16px);
-  -webkit-backdrop-filter: blur(16px);
-  border: 1px solid var(--border);
+  backdrop-filter: blur(16px);           /* Desfoque do conteúdo atrás */
+  -webkit-backdrop-filter: blur(16px);   /* Compatibilidade com Safari */
+  border: 1px solid var(--borda);
   padding: 12px 24px;
-  border-radius: 50px;
-  width: 100%; max-width: 1100px;
-  display: flex; justify-content: space-between; align-items: center;
-  box-shadow: 0 8px 32px rgba(0,0,0,0.4);
-}
-.logo { display: flex; align-items: center; gap: 8px; font-size: 19px; font-weight: 800; }
-.logo i { color: var(--cyan); font-size: 18px; }
-.nav-links { list-style: none; display: flex; gap: 28px; }
-.nav-links a { font-size: 14px; font-weight: 600; color: #ccdde6; transition: color 0.2s; }
-.nav-links a:hover { color: var(--cyan); }
-.social { display: flex; gap: 8px; }
-.social a {
-  width: 34px; height: 34px; border-radius: 50%;
-  display: flex; align-items: center; justify-content: center;
-  background: rgba(255,255,255,0.08); color: #fff; font-size: 14px;
-  border: 1px solid rgba(255,255,255,0.1); transition: 0.25s;
-}
-.social a:hover { background: var(--cyan); color: var(--bg-deep); border-color: var(--cyan); }
-.menu-toggle { display: none; font-size: 20px; cursor: pointer; color: #fff; }
-.social-mobile { display: none; }
-
-/* ===== HERO ===== */
-.hero {
-  min-height: 100vh;
-  background:
-    radial-gradient(ellipse 80% 55% at 110% -5%, rgba(0,195,255,0.18) 0%, rgba(0,195,255,0.06) 45%, transparent 70%),
-    radial-gradient(ellipse 60% 70% at 75% 50%, rgba(0,195,255,0.07) 0%, transparent 70%),
-    radial-gradient(ellipse 40% 50% at 20% 30%, rgba(0,120,200,0.06) 0%, transparent 60%),
-    linear-gradient(160deg, #062030 0%, #04111a 60%);
-  display: flex; align-items: center;
-  padding: 80px 0 60px;
-  margin-top: -56px;
-  padding-top: 136px;
-}
-.hero-wrapper {
-  display: flex; align-items: center;
-  justify-content: space-between; gap: 60px;
-}
-.hero-text { max-width: 520px; }
-
-/* Badge pill — hero only, keeps the border */
-.badge-pill {
-  display: inline-flex; align-items: center; gap: 8px;
-  padding: 7px 16px; border-radius: 50px;
-  border: 1px solid rgba(0,195,255,0.4);
-  background: transparent;
-  font-size: 11px; font-weight: 700; color: var(--cyan);
-  letter-spacing: 0.08em; margin-bottom: 24px;
-  text-transform: uppercase;
-}
-.badge-pill i { display: none; }
-
-.hero-text h1 {
-  font-size: 64px; font-weight: 800; line-height: 1.0;
-  letter-spacing: -0.03em;
-}
-.hero-text h1 span { color: var(--cyan); font-size: 72px; }
-.hero-text p {
-  margin-top: 18px; font-size: 17px;
-  color: var(--text-muted); line-height: 1.65; max-width: 400px;
+  border-radius: 50px; /* Formato de pílula */
+  width: 100%;
+  max-width: 1100px;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  box-shadow: 0 8px 32px rgba(0, 0, 0, 0.4);
 }
 
-/* Mini feature row */
-.hero-features {
-  display: flex; gap: 20px; margin-top: 28px; flex-wrap: wrap;
+/* Logo — ícone + nome da marca */
+.logo {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  font-size: 19px;
+  font-weight: 800;
 }
-.hero-feat {
-  display: flex; align-items: center; gap: 8px;
-  font-size: 13px; color: #aac5d4; font-weight: 600;
+.logo i {
+  color: var(--ciano);
+  font-size: 18px;
 }
-.hero-feat i { color: var(--cyan); font-size: 14px; }
 
-/* CTA buttons */
-.hero-ctas { display: flex; flex-direction: column; align-items: flex-start; gap: 14px; margin-top: 32px; }
-.btn-primary {
-  display: inline-flex; align-items: center; gap: 10px;
-  padding: 15px 26px; background: var(--cyan); color: #04111a;
-  border-radius: 14px; font-weight: 800; font-size: 15px;
-  transition: 0.25s; box-shadow: 0 6px 28px rgba(0,195,255,0.3);
+/* Links de navegação */
+.nav-links {
+  list-style: none;
+  display: flex;
+  gap: 28px;
 }
-.btn-primary:hover { background: #00aadd; box-shadow: 0 8px 36px rgba(0,195,255,0.45); transform: translateY(-1px); }
-.btn-secondary {
-  display: inline-flex; align-items: center; gap: 8px;
-  font-size: 14px; font-weight: 700; color: #aac5d4;
+.nav-links a {
+  font-size: 14px;
+  font-weight: 600;
+  color: #ccdde6;
   transition: color 0.2s;
 }
-.btn-secondary i { font-size: 18px; color: var(--cyan); }
-.btn-secondary:hover { color: var(--cyan); }
-
-/* Hero image */
-.hero-image { flex: 0 0 auto; position: relative; }
-.hero-img-wrap { position: relative; width: 460px; }
-.hero-img-wrap img {
-  width: 100%; aspect-ratio: 1/1;
-  object-fit: cover;
-  border-radius: 32px;
-  border-top-left-radius: 80px;
-  border-bottom-right-radius: 80px;
-  box-shadow: 0 30px 70px rgba(0,0,0,0.5), 0 0 0 1px rgba(0,195,255,0.1);
+.nav-links a:hover {
+  color: var(--ciano);
 }
 
-/* Floating card */
-.float-card {
-  position: absolute; bottom: 24px; left: -28px;
-  background: rgba(6,28,43,0.88);
-  backdrop-filter: blur(12px);
-  border: 1px solid var(--border);
-  border-radius: 16px;
-  padding: 14px 18px;
-  display: flex; align-items: center; gap: 12px;
-  box-shadow: 0 12px 36px rgba(0,0,0,0.4);
-  min-width: 240px;
+/* Ícones de redes sociais (desktop) */
+.social {
+  display: flex;
+  gap: 8px;
 }
-.float-card-icon {
-  width: 38px; height: 38px; border-radius: 10px;
-  background: rgba(0,195,255,0.12);
-  display: flex; align-items: center; justify-content: center;
-  font-size: 18px; color: var(--cyan); flex-shrink: 0;
-}
-.float-card-text { font-size: 13px; line-height: 1.35; }
-.float-card-text strong { display: block; font-size: 14px; font-weight: 700; }
-.float-card-text span { color: var(--text-muted); font-size: 12px; }
-
-/* ===== STATS BAR ===== */
-.stats-bar {
-  background: #041520;
-  border-top: 1px solid var(--border);
-  border-bottom: 1px solid var(--border);
-  padding: 28px 0;
-}
-.stats-inner {
-  display: flex; justify-content: space-around; align-items: center;
-  flex-wrap: wrap; gap: 16px;
-}
-.stat-item { text-align: center; min-width: 130px; }
-.stat-value {
-  display: flex; align-items: center; justify-content: center; gap: 6px;
-  font-size: 32px; font-weight: 800; color: #fff; line-height: 1;
-}
-.stat-value i { color: #ffc844; font-size: 22px; }
-.stat-stars { display: flex; gap: 3px; justify-content: center; margin-top: 4px; }
-.stat-stars i { color: #ffc844; font-size: 11px; }
-.stat-label { font-size: 12px; color: var(--text-muted); margin-top: 6px; font-weight: 500; }
-.stat-divider { width: 1px; height: 50px; background: var(--border); }
-
-/* ===== SEÇÃO GENÉRICA ===== */
-.section-header { margin-bottom: 50px; }
-.section-tag {
-  display: inline-block; font-size: 12px; font-weight: 700;
-  color: var(--cyan);
-  padding: 0; border: none; background: none;
-  letter-spacing: 0.1em; text-transform: uppercase; margin-bottom: 14px;
-}
-.section-header h2 { font-size: 40px; font-weight: 800; line-height: 1.1; letter-spacing: -0.02em; }
-.section-header p { color: var(--text-muted); font-size: 16px; margin-top: 12px; max-width: 520px; line-height: 1.6; }
-.section-header-row { display: flex; justify-content: space-between; align-items: flex-end; flex-wrap: wrap; gap: 20px; }
-
-.btn-outline {
-  display: inline-flex; align-items: center; gap: 8px;
-  padding: 11px 22px; border-radius: 50px;
-  border: 1px solid rgba(255,255,255,0.15); color: #ccdde6;
-  font-size: 13px; font-weight: 600; white-space: nowrap;
+.social a {
+  width: 34px;
+  height: 34px;
+  border-radius: 50%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  background: rgba(255, 255, 255, 0.08);
+  color: #fff;
+  font-size: 14px;
+  border: 1px solid rgba(255, 255, 255, 0.1);
   transition: 0.25s;
 }
-.btn-outline:hover { border-color: var(--cyan); color: var(--cyan); }
+.social a:hover {
+  background: var(--ciano);
+  color: var(--fundo-profundo);
+  border-color: var(--ciano);
+}
 
-/* ===== TRATAMENTOS ===== */
-.tratamentos { padding: 90px 0; }
+/* Botão hambúrguer (visível apenas no mobile — ver seção responsiva) */
+.menu-toggle {
+  display: none;
+  font-size: 20px;
+  cursor: pointer;
+  color: #fff;
+}
+
+/* Redes sociais dentro do menu mobile (oculto no desktop) */
+.social-mobile {
+  display: none;
+}
+
+
+/* ================================================================
+   4. HERO
+   Seção principal de apresentação — ocupa toda a altura da tela.
+   Usa múltiplos gradientes radiais para criar profundidade visual.
+   ================================================================ */
+
+.hero {
+  min-height: 100vh;
+  /* Camadas de gradiente sobrepostas para efeito de luz ambiente */
+  background:
+    radial-gradient(ellipse 80% 55% at 110% -5%, rgba(0,195,255,0.18) 0%, rgba(0,195,255,0.06) 45%, transparent 70%),
+    radial-gradient(ellipse 60% 70% at 75% 50%,  rgba(0,195,255,0.07) 0%, transparent 70%),
+    radial-gradient(ellipse 40% 50% at 20% 30%,  rgba(0,120,200,0.06) 0%, transparent 60%),
+    linear-gradient(160deg, #062030 0%, #04111a 60%);
+  display: flex;
+  align-items: center;
+  padding: 80px 0 60px;
+  margin-top: -56px;    /* Compensa a altura da navbar sticky */
+  padding-top: 136px;   /* Recria o espaço removido pelo margin negativo */
+}
+
+/* Linha horizontal com texto à esquerda e imagem à direita */
+.hero-wrapper {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 60px;
+}
+
+/* Bloco de texto do hero */
+.hero-texto {
+  max-width: 520px;
+}
+
+/* Pílula de etiqueta ("badge") acima do título principal */
+.badge-pílula {
+  display: inline-flex;
+  align-items: center;
+  gap: 8px;
+  padding: 7px 16px;
+  border-radius: 50px;
+  border: 1px solid rgba(0, 195, 255, 0.4);
+  background: transparent;
+  font-size: 11px;
+  font-weight: 700;
+  color: var(--ciano);
+  letter-spacing: 0.08em;
+  margin-bottom: 24px;
+  text-transform: uppercase;
+}
+.badge-pílula i {
+  display: none; /* Ícone oculto — reservado para uso futuro */
+}
+
+/* Título principal */
+.hero-texto h1 {
+  font-size: 64px;
+  font-weight: 800;
+  line-height: 1.0;
+  letter-spacing: -0.03em;
+}
+/* Palavra/linha de destaque dentro do título */
+.hero-texto h1 span {
+  color: var(--ciano);
+  font-size: 72px;
+}
+
+/* Parágrafo de apoio abaixo do título */
+.hero-texto p {
+  margin-top: 18px;
+  font-size: 17px;
+  color: var(--texto-suave);
+  line-height: 1.65;
+  max-width: 400px;
+}
+
+/* Linha de mini-recursos (ícone + texto curto) */
+.hero-recursos {
+  display: flex;
+  gap: 20px;
+  margin-top: 28px;
+  flex-wrap: wrap;
+}
+.hero-recurso {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  font-size: 13px;
+  color: #aac5d4;
+  font-weight: 600;
+}
+.hero-recurso i {
+  color: var(--ciano);
+  font-size: 14px;
+}
+
+/* Grupo de botões de chamada para ação (CTA) */
+.hero-ctas {
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+  gap: 14px;
+  margin-top: 32px;
+}
+
+/* Botão primário — fundo ciano sólido */
+.btn-primario {
+  display: inline-flex;
+  align-items: center;
+  gap: 10px;
+  padding: 15px 26px;
+  background: var(--ciano);
+  color: #04111a;
+  border-radius: 14px;
+  font-weight: 800;
+  font-size: 15px;
+  transition: 0.25s;
+  box-shadow: 0 6px 28px rgba(0, 195, 255, 0.3);
+}
+.btn-primario:hover {
+  background: #00aadd;
+  box-shadow: 0 8px 36px rgba(0, 195, 255, 0.45);
+  transform: translateY(-1px); /* Sutil levitação no hover */
+}
+
+/* Botão secundário — apenas texto com ícone */
+.btn-secundario {
+  display: inline-flex;
+  align-items: center;
+  gap: 8px;
+  font-size: 14px;
+  font-weight: 700;
+  color: #aac5d4;
+  transition: color 0.2s;
+}
+.btn-secundario i {
+  font-size: 18px;
+  color: var(--ciano);
+}
+.btn-secundario:hover {
+  color: var(--ciano);
+}
+
+/* --- Imagem do Hero --- */
+
+/* Container do lado direito (imagem) */
+.hero-imagem {
+  flex: 0 0 auto;
+  position: relative;
+}
+
+/* Wrapper da foto — define tamanho e bordas assimétricas */
+.hero-img-wrap {
+  position: relative;
+  width: 460px;
+}
+.hero-img-wrap img {
+  width: 100%;
+  aspect-ratio: 1 / 1;
+  object-fit: cover;
+  border-radius: 32px;
+  border-top-left-radius: 80px;      /* Canto superior esquerdo arredondado */
+  border-bottom-right-radius: 80px;  /* Canto inferior direito arredondado */
+  box-shadow:
+    0 30px 70px rgba(0, 0, 0, 0.5),
+    0 0 0 1px rgba(0, 195, 255, 0.1); /* Borda sutil ao redor da foto */
+}
+
+/* Card flutuante sobre a imagem (ex.: "15 anos de experiência") */
+.card-flutuante {
+  position: absolute;
+  bottom: 24px;
+  left: -28px; /* Ultrapassa a borda esquerda da imagem */
+  background: rgba(6, 28, 43, 0.88);
+  backdrop-filter: blur(12px);
+  border: 1px solid var(--borda);
+  border-radius: 16px;
+  padding: 14px 18px;
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  box-shadow: 0 12px 36px rgba(0, 0, 0, 0.4);
+  min-width: 240px;
+}
+
+/* Ícone dentro do card flutuante */
+.card-flutuante-icone {
+  width: 38px;
+  height: 38px;
+  border-radius: 10px;
+  background: rgba(0, 195, 255, 0.12);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 18px;
+  color: var(--ciano);
+  flex-shrink: 0;
+}
+
+/* Textos do card flutuante */
+.card-flutuante-texto {
+  font-size: 13px;
+  line-height: 1.35;
+}
+.card-flutuante-texto strong {
+  display: block;
+  font-size: 14px;
+  font-weight: 700;
+}
+.card-flutuante-texto span {
+  color: var(--texto-suave);
+  font-size: 12px;
+}
+
+
+/* ================================================================
+   5. BARRA DE ESTATÍSTICAS
+   Faixa horizontal com números de destaque (ex.: pacientes, anos, nota).
+   ================================================================ */
+
+.barra-stats {
+  background: #041520;
+  border-top: 1px solid var(--borda);
+  border-bottom: 1px solid var(--borda);
+  padding: 28px 0;
+}
+
+/* Linha interna com os itens espaçados */
+.stats-interno {
+  display: flex;
+  justify-content: space-around;
+  align-items: center;
+  flex-wrap: wrap;
+  gap: 16px;
+}
+
+/* Cada bloco de estatística */
+.stat-item {
+  text-align: center;
+  min-width: 130px;
+}
+
+/* Número grande de destaque */
+.stat-valor {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 6px;
+  font-size: 32px;
+  font-weight: 800;
+  color: #fff;
+  line-height: 1;
+}
+.stat-valor i {
+  color: #ffc844; /* Dourado para ícones de estrela/troféu */
+  font-size: 22px;
+}
+
+/* Estrelinhas de avaliação */
+.stat-estrelas {
+  display: flex;
+  gap: 3px;
+  justify-content: center;
+  margin-top: 4px;
+}
+.stat-estrelas i {
+  color: #ffc844;
+  font-size: 11px;
+}
+
+/* Rótulo descritivo abaixo do número */
+.stat-rotulo {
+  font-size: 12px;
+  color: var(--texto-suave);
+  margin-top: 6px;
+  font-weight: 500;
+}
+
+/* Divisor vertical entre os itens de estatística */
+.stat-divisor {
+  width: 1px;
+  height: 50px;
+  background: var(--borda);
+}
+
+
+/* ================================================================
+   6. SEÇÃO GENÉRICA
+   Cabeçalho padrão reutilizável em todas as seções do site.
+   Inclui também o botão outline genérico.
+   ================================================================ */
+
+/* Wrapper do cabeçalho de seção */
+.cabecalho-secao {
+  margin-bottom: 50px;
+}
+
+/* Etiqueta colorida acima do título (ex.: "NOSSOS SERVIÇOS") */
+.etiqueta-secao {
+  display: inline-block;
+  font-size: 12px;
+  font-weight: 700;
+  color: var(--ciano);
+  padding: 0;
+  border: none;
+  background: none;
+  letter-spacing: 0.1em;
+  text-transform: uppercase;
+  margin-bottom: 14px;
+}
+
+/* Título principal da seção */
+.cabecalho-secao h2 {
+  font-size: 40px;
+  font-weight: 800;
+  line-height: 1.1;
+  letter-spacing: -0.02em;
+}
+
+/* Descrição da seção */
+.cabecalho-secao p {
+  color: var(--texto-suave);
+  font-size: 16px;
+  margin-top: 12px;
+  max-width: 520px;
+  line-height: 1.6;
+}
+
+/* Linha com título à esquerda e botão à direita */
+.cabecalho-secao-linha {
+  display: flex;
+  justify-content: space-between;
+  align-items: flex-end;
+  flex-wrap: wrap;
+  gap: 20px;
+}
+
+/* Botão de contorno (borda + texto) — usado em cabeçalhos de seção */
+.btn-contorno {
+  display: inline-flex;
+  align-items: center;
+  gap: 8px;
+  padding: 11px 22px;
+  border-radius: 50px;
+  border: 1px solid rgba(255, 255, 255, 0.15);
+  color: #ccdde6;
+  font-size: 13px;
+  font-weight: 600;
+  white-space: nowrap;
+  transition: 0.25s;
+}
+.btn-contorno:hover {
+  border-color: var(--ciano);
+  color: var(--ciano);
+}
+
+
+/* ================================================================
+   7. TRATAMENTOS
+   Grid de cards representando os serviços/tratamentos oferecidos.
+   Cada card possui um ícone, título e descrição curta.
+   ================================================================ */
+
+.tratamentos {
+  padding: 90px 0;
+}
+
+/* Grid de 4 colunas no desktop */
 .trat-grid {
   display: grid;
   grid-template-columns: repeat(4, 1fr);
   gap: 20px;
 }
+
+/* Card individual de tratamento */
 .trat-card {
-  background: var(--bg-card);
-  border: 1px solid rgba(255,255,255,0.05);
+  background: var(--fundo-card);
+  border: 1px solid rgba(255, 255, 255, 0.05);
   border-radius: 22px;
   padding: 32px 24px;
   text-align: center;
-  transition: 0.3s; cursor: default;
-  position: relative; overflow: hidden;
+  transition: 0.3s;
+  cursor: default;
+  position: relative;
+  overflow: hidden;
 }
+
+/* Overlay de gradiente ciano — aparece no hover via opacidade */
 .trat-card::before {
-  content: ''; position: absolute; inset: 0; border-radius: inherit;
-  background: linear-gradient(135deg, rgba(0,195,255,0.06) 0%, transparent 60%);
-  opacity: 0; transition: opacity 0.3s;
+  content: '';
+  position: absolute;
+  inset: 0;
+  border-radius: inherit;
+  background: linear-gradient(135deg, rgba(0, 195, 255, 0.06) 0%, transparent 60%);
+  opacity: 0;
+  transition: opacity 0.3s;
 }
-.trat-card:hover { transform: translateY(-8px); border-color: rgba(0,195,255,0.25); box-shadow: 0 20px 50px rgba(0,0,0,0.35); }
-.trat-card:hover::before { opacity: 1; }
-.trat-icon {
-  width: 68px; height: 68px; border-radius: 50%;
-  background: rgba(0,195,255,0.08);
-  border: 1px solid rgba(0,195,255,0.25);
-  display: flex; align-items: center; justify-content: center;
-  font-size: 24px; color: var(--cyan);
+
+/* Efeito de elevação e destaque no hover */
+.trat-card:hover {
+  transform: translateY(-8px);
+  border-color: rgba(0, 195, 255, 0.25);
+  box-shadow: 0 20px 50px rgba(0, 0, 0, 0.35);
+}
+.trat-card:hover::before {
+  opacity: 1;
+}
+
+/* Círculo de ícone centralizado */
+.trat-icone {
+  width: 68px;
+  height: 68px;
+  border-radius: 50%;
+  background: rgba(0, 195, 255, 0.08);
+  border: 1px solid rgba(0, 195, 255, 0.25);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 24px;
+  color: var(--ciano);
   margin: 0 auto 20px;
   transition: 0.3s;
 }
-.trat-card:hover .trat-icon { background: rgba(0,195,255,0.18); box-shadow: 0 0 20px rgba(0,195,255,0.2); }
-.trat-card h3 { font-size: 16px; font-weight: 700; margin-bottom: 10px; }
-.trat-card p { font-size: 13px; color: var(--text-muted); line-height: 1.6; }
+/* Ícone brilha no hover */
+.trat-card:hover .trat-icone {
+  background: rgba(0, 195, 255, 0.18);
+  box-shadow: 0 0 20px rgba(0, 195, 255, 0.2);
+}
 
-/* ===== DIFERENCIAIS ===== */
-.diferenciais { padding: 80px 0; background: rgba(6,28,43,0.5); }
+.trat-card h3 {
+  font-size: 16px;
+  font-weight: 700;
+  margin-bottom: 10px;
+}
+.trat-card p {
+  font-size: 13px;
+  color: var(--texto-suave);
+  line-height: 1.6;
+}
+
+
+/* ================================================================
+   8. DIFERENCIAIS
+   Seção de 3 colunas com os diferenciais competitivos da clínica.
+   Fundo levemente escurecido para contraste com a seção anterior.
+   ================================================================ */
+
+.diferenciais {
+  padding: 80px 0;
+  background: rgba(6, 28, 43, 0.5);
+}
+
+/* Grid de 3 colunas */
 .dif-grid {
-  display: grid; grid-template-columns: repeat(3, 1fr); gap: 22px; margin-top: 50px;
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 22px;
+  margin-top: 50px;
 }
-.dif-card {
-  background: var(--bg-card2); border: 1px solid rgba(255,255,255,0.05);
-  border-radius: 22px; padding: 34px 28px; transition: 0.3s;
-}
-.dif-card:hover { transform: translateY(-6px); border-color: rgba(0,195,255,0.2); }
-.dif-icon {
-  width: 52px; height: 52px; border-radius: 14px;
-  background: rgba(0,195,255,0.1); border: 1px solid rgba(0,195,255,0.2);
-  display: flex; align-items: center; justify-content: center;
-  font-size: 22px; color: var(--cyan); margin-bottom: 20px;
-}
-.dif-card h3 { font-size: 17px; font-weight: 700; margin-bottom: 10px; }
-.dif-card p { font-size: 14px; color: var(--text-muted); line-height: 1.65; }
 
-/* ===== DEPOIMENTOS ===== */
+/* Card de diferencial */
+.dif-card {
+  background: var(--fundo-card2);
+  border: 1px solid rgba(255, 255, 255, 0.05);
+  border-radius: 22px;
+  padding: 34px 28px;
+  transition: 0.3s;
+}
+.dif-card:hover {
+  transform: translateY(-6px);
+  border-color: rgba(0, 195, 255, 0.2);
+}
+
+/* Caixa de ícone com cantos arredondados */
+.dif-icone {
+  width: 52px;
+  height: 52px;
+  border-radius: 14px;
+  background: rgba(0, 195, 255, 0.1);
+  border: 1px solid rgba(0, 195, 255, 0.2);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 22px;
+  color: var(--ciano);
+  margin-bottom: 20px;
+}
+
+.dif-card h3 {
+  font-size: 17px;
+  font-weight: 700;
+  margin-bottom: 10px;
+}
+.dif-card p {
+  font-size: 14px;
+  color: var(--texto-suave);
+  line-height: 1.65;
+}
+
+
+/* ================================================================
+   9. DEPOIMENTOS
+   Grid de avaliações de clientes com nota em estrelas.
+   Inclui dots de paginação decorativos.
+   ================================================================ */
+
 .depoimentos {
   padding: 90px 0;
   background:
-    radial-gradient(ellipse 50% 60% at 100% 0%, rgba(0,195,255,0.07) 0%, transparent 60%),
-    var(--bg-deep);
+    radial-gradient(ellipse 50% 60% at 100% 0%, rgba(0, 195, 255, 0.07) 0%, transparent 60%),
+    var(--fundo-profundo);
 }
-.depoimentos .section-header { text-align: center; }
-.depoimentos .section-header h2 { font-size: 36px; }
 
+/* Cabeçalho centralizado nesta seção */
+.depoimentos .cabecalho-secao {
+  text-align: center;
+}
+.depoimentos .cabecalho-secao h2 {
+  font-size: 36px;
+}
+
+/* Grid de 3 colunas de cards de depoimento */
 .dep-grid {
   display: grid;
   grid-template-columns: repeat(3, 1fr);
   gap: 22px;
   margin-top: 50px;
 }
+
+/* Card individual de depoimento */
 .dep-card {
-  background: var(--bg-card);
-  border: 1px solid rgba(0,195,255,0.1);
+  background: var(--fundo-card);
+  border: 1px solid rgba(0, 195, 255, 0.1);
   border-radius: 20px;
   padding: 28px 26px 24px;
-  display: flex; flex-direction: column; gap: 14px;
+  display: flex;
+  flex-direction: column;
+  gap: 14px;
   transition: 0.3s;
 }
-.dep-card:hover { transform: translateY(-6px); border-color: rgba(0,195,255,0.25); box-shadow: 0 20px 50px rgba(0,0,0,0.3); }
+.dep-card:hover {
+  transform: translateY(-6px);
+  border-color: rgba(0, 195, 255, 0.25);
+  box-shadow: 0 20px 50px rgba(0, 0, 0, 0.3);
+}
 
-.dep-header { display: flex; align-items: flex-start; justify-content: space-between; }
-.dep-quote { display: flex; flex-direction: column; gap: 2px; }
-.dep-quote-icon { font-size: 28px; font-weight: 900; color: var(--cyan); line-height: 1; font-family: Georgia, serif; }
-.dep-tag { font-size: 11px; font-weight: 700; color: var(--cyan); letter-spacing: 0.06em; text-transform: uppercase; margin-top: 4px; }
+/* Cabeçalho do card: ícone de aspas + estrelas */
+.dep-cabecalho {
+  display: flex;
+  align-items: flex-start;
+  justify-content: space-between;
+}
 
-.dep-body { font-size: 14px; color: #d0e4ee; line-height: 1.7; flex: 1; }
+/* Bloco das aspas de citação */
+.dep-citacao {
+  display: flex;
+  flex-direction: column;
+  gap: 2px;
+}
+/* Símbolo " estilizado como aspas tipográficas */
+.dep-aspas {
+  font-size: 28px;
+  font-weight: 900;
+  color: var(--ciano);
+  line-height: 1;
+  font-family: Georgia, serif;
+}
+/* Etiqueta do tipo de depoimento (ex.: "Paciente verificado") */
+.dep-etiqueta {
+  font-size: 11px;
+  font-weight: 700;
+  color: var(--ciano);
+  letter-spacing: 0.06em;
+  text-transform: uppercase;
+  margin-top: 4px;
+}
 
-.dep-stars { display: flex; gap: 4px; }
-.dep-stars i { color: #ffc844; font-size: 13px; }
+/* Texto principal do depoimento */
+.dep-corpo {
+  font-size: 14px;
+  color: #d0e4ee;
+  line-height: 1.7;
+  flex: 1; /* Ocupa o espaço disponível, alinhando rodapés dos cards */
+}
 
-.dep-author { display: flex; align-items: center; gap: 10px; padding-top: 12px; border-top: 1px solid rgba(255,255,255,0.06); }
+/* Estrelas de avaliação */
+.dep-estrelas {
+  display: flex;
+  gap: 4px;
+}
+.dep-estrelas i {
+  color: #ffc844;
+  font-size: 13px;
+}
+
+/* Rodapé do card: avatar + nome do autor */
+.dep-autor {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  padding-top: 12px;
+  border-top: 1px solid rgba(255, 255, 255, 0.06);
+}
+
+/* Avatar circular com inicial do nome */
 .dep-avatar {
-  width: 34px; height: 34px; border-radius: 50%;
-  background: rgba(0,195,255,0.12); border: 1px solid rgba(0,195,255,0.2);
-  display: flex; align-items: center; justify-content: center;
-  font-size: 15px; color: var(--cyan); flex-shrink: 0;
+  width: 34px;
+  height: 34px;
+  border-radius: 50%;
+  background: rgba(0, 195, 255, 0.12);
+  border: 1px solid rgba(0, 195, 255, 0.2);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 15px;
+  color: var(--ciano);
+  flex-shrink: 0;
 }
-.dep-name { font-size: 14px; font-weight: 700; }
 
-.dep-dots { display: flex; justify-content: center; gap: 8px; margin-top: 36px; }
+.dep-nome {
+  font-size: 14px;
+  font-weight: 700;
+}
+
+/* Dots de paginação (decorativos) abaixo do grid */
+.dep-dots {
+  display: flex;
+  justify-content: center;
+  gap: 8px;
+  margin-top: 36px;
+}
 .dep-dot {
-  width: 8px; height: 8px; border-radius: 50%;
-  background: rgba(0,195,255,0.3); cursor: pointer; transition: 0.2s;
+  width: 8px;
+  height: 8px;
+  border-radius: 50%;
+  background: rgba(0, 195, 255, 0.3);
+  cursor: pointer;
+  transition: 0.2s;
 }
-.dep-dot.active { background: var(--cyan); width: 22px; border-radius: 4px; }
+/* Dot ativo — mais largo e destaca a página atual */
+.dep-dot.ativo {
+  background: var(--ciano);
+  width: 22px;
+  border-radius: 4px;
+}
 
-@media (max-width: 1024px) { .dep-grid { grid-template-columns: 1fr 1fr; } }
-@media (max-width: 640px)  { .dep-grid { grid-template-columns: 1fr; } }
 
-/* ===== CONTATO ===== */
-.contato { padding: 90px 0; text-align: center; }
-.contato h2 { font-size: 40px; font-weight: 800; letter-spacing: -0.02em; }
-.contato p { color: var(--text-muted); font-size: 16px; margin: 16px auto 36px; max-width: 420px; line-height: 1.6; }
+/* ================================================================
+   10. CONTATO
+   Seção simples centralizada com chamada para ação de contato.
+   ================================================================ */
 
-/* ===== FOOTER ===== */
+.contato {
+  padding: 90px 0;
+  text-align: center;
+}
+.contato h2 {
+  font-size: 40px;
+  font-weight: 800;
+  letter-spacing: -0.02em;
+}
+.contato p {
+  color: var(--texto-suave);
+  font-size: 16px;
+  margin: 16px auto 36px;
+  max-width: 420px;
+  line-height: 1.6;
+}
+
+
+/* ================================================================
+   11. RODAPÉ
+   Rodapé minimalista centralizado com linha de separação.
+   ================================================================ */
+
 footer {
-  text-align: center; padding: 28px 0;
-  border-top: 1px solid var(--border);
-  font-size: 13px; color: var(--text-muted);
+  text-align: center;
+  padding: 28px 0;
+  border-top: 1px solid var(--borda);
+  font-size: 13px;
+  color: var(--texto-suave);
 }
 
-/* ===== TABLET ===== */
+
+/* ================================================================
+   12. RESPONSIVO — TABLET (até 1024px)
+   Ajustes de layout para telas médias (iPads, notebooks menores).
+   ================================================================ */
+
 @media (max-width: 1024px) {
+  /* Imagem do hero menor */
   .hero-img-wrap { width: 380px; }
-  .hero-text h1 { font-size: 50px; }
-  .hero-text h1 span { font-size: 58px; }
+
+  /* Título do hero menor */
+  .hero-texto h1 { font-size: 50px; }
+  .hero-texto h1 span { font-size: 58px; }
+
+  /* Tratamentos: 2 colunas ao invés de 4 */
   .trat-grid { grid-template-columns: repeat(2, 1fr); }
+
+  /* Depoimentos: 2 colunas ao invés de 3 */
+  .dep-grid { grid-template-columns: 1fr 1fr; }
 }
 
-/* ===== MOBILE ===== */
+
+/* ================================================================
+   13. RESPONSIVO — MOBILE (até 768px)
+   Adaptações para smartphones em modo retrato.
+   ================================================================ */
+
 @media (max-width: 768px) {
+  /* Hero empilhado: imagem acima, texto abaixo */
   .hero { padding: 80px 0 50px; }
   .hero-wrapper { flex-direction: column-reverse; text-align: center; gap: 40px; }
-  .hero-text { max-width: 100%; }
-  .hero-text h1 { font-size: 36px; }
-  .hero-text h1 span { font-size: 42px; }
-  .hero-text p { max-width: 100%; }
-  .hero-features { justify-content: center; }
+  .hero-texto { max-width: 100%; }
+  .hero-texto h1 { font-size: 36px; }
+  .hero-texto h1 span { font-size: 42px; }
+  .hero-texto p { max-width: 100%; }
+  .hero-recursos { justify-content: center; }
   .hero-ctas { justify-content: center; align-items: center; }
   .hero-img-wrap { width: 100%; max-width: 340px; }
-  .float-card { left: 50%; transform: translateX(-50%); bottom: -20px; min-width: 220px; }
-  .stat-divider { display: none; }
-  .stats-inner { gap: 24px; }
-  .trat-grid { grid-template-columns: 1fr 1fr; }
-  .dif-grid { grid-template-columns: 1fr; }
-  .section-header-row { flex-direction: column; align-items: flex-start; }
-  .menu-toggle { display: block; }
-  .nav-links {
-    position: absolute; top: 70px; right: 20px;
-    width: 240px; background: #031e2e;
-    flex-direction: column; padding: 20px; border-radius: 15px; display: none;
-    border: 1px solid var(--border);
+
+  /* Card flutuante centralizado horizontalmente */
+  .card-flutuante {
+    left: 50%;
+    transform: translateX(-50%);
+    bottom: -20px;
+    min-width: 220px;
   }
-  .nav-links.active { display: flex; }
+
+  /* Remove divisores verticais entre as stats */
+  .stat-divisor { display: none; }
+  .stats-interno { gap: 24px; }
+
+  /* Grids empilhados */
+  .trat-grid { grid-template-columns: 1fr 1fr; }
+  .dif-grid  { grid-template-columns: 1fr; }
+
+  /* Cabeçalho de seção em coluna única */
+  .cabecalho-secao-linha { flex-direction: column; align-items: flex-start; }
+
+  /* Menu hambúrguer visível no mobile */
+  .menu-toggle { display: block; }
+
+  /* Menu dropdown mobile */
+  .nav-links {
+    position: absolute;
+    top: 70px;
+    right: 20px;
+    width: 240px;
+    background: #031e2e;
+    flex-direction: column;
+    padding: 20px;
+    border-radius: 15px;
+    display: none; /* Ocultado por padrão — JS ativa a classe .ativo */
+    border: 1px solid var(--borda);
+  }
+  .nav-links.ativo { display: flex; }
   .nav-links li { margin-bottom: 10px; }
+
+  /* Ícones sociais: versão desktop oculta, mobile exibida */
   .social { display: none; }
-  .social-mobile { display: flex; gap: 10px; margin-top: 10px; padding-top: 10px; border-top: 1px solid var(--border); }
+  .social-mobile {
+    display: flex;
+    gap: 10px;
+    margin-top: 10px;
+    padding-top: 10px;
+    border-top: 1px solid var(--borda);
+  }
 }
 
-/* ===== MOBILE PEQUENO ===== */
+
+/* ================================================================
+   14. RESPONSIVO — MOBILE PEQUENO (até 480px)
+   Ajustes finos para telas muito estreitas (menos de 480px).
+   ================================================================ */
+
 @media (max-width: 480px) {
-  .hero-text h1 { font-size: 30px; }
-  .hero-text h1 span { font-size: 36px; }
+  /* Título ainda menor */
+  .hero-texto h1 { font-size: 30px; }
+  .hero-texto h1 span { font-size: 36px; }
+
+  /* Tratamentos em coluna única */
   .trat-grid { grid-template-columns: 1fr; }
+
+  /* Depoimentos em coluna única */
+  .dep-grid { grid-template-columns: 1fr; }
 }

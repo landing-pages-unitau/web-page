@@ -1,13 +1,20 @@
 "use strict";
 
-var toggle = document.getElementById('menu-toggle');
-var links = document.getElementById('nav-links');
-toggle.addEventListener('click', function () {
-  return links.classList.toggle('active');
-});
-links.querySelectorAll('a').forEach(function (a) {
-  return a.addEventListener('click', function () {
-    return links.classList.remove('active');
+// ================================================================
+// MENU MOBILE — Hambúrguer
+// Alterna a classe .ativo no menu ao clicar no botão hambúrguer.
+// Fecha o menu ao clicar em qualquer link de navegação.
+// ================================================================
+var menuToggle = document.getElementById('menu-toggle');
+var navLinks = document.getElementById('nav-links'); // Abre/fecha o menu ao clicar no ícone de hambúrguer
+
+menuToggle.addEventListener('click', function () {
+  navLinks.classList.toggle('ativo');
+}); // Fecha o menu ao clicar em qualquer link (melhora UX no mobile)
+
+navLinks.querySelectorAll('a').forEach(function (link) {
+  link.addEventListener('click', function () {
+    navLinks.classList.remove('ativo');
   });
 });
 //# sourceMappingURL=script.dev.js.map
